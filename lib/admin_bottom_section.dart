@@ -7,6 +7,17 @@ class AdminBottomSection extends StatelessWidget {
       margin: const EdgeInsets.only(top: 15), // Add top margin here
       child: BottomAppBar(
         color: const Color(0xFF2E7835),
+        child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          //home icon
+          IconButton(
+           onPressed: null,
+           icon: const Icon(Icons.home,color: Colors.white)
+           ),
+
+        ],
+        ),
       ),
     );
   }
