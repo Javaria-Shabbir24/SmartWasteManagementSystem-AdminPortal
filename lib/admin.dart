@@ -1,27 +1,35 @@
 import 'package:flutter/material.dart';
+import 'admin_profile_section.dart';//importing the profile section
 
 class Admin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFE6F3EC),
-        title: Text('Admin Home', 
+        backgroundColor:const  Color(0xFFE6F3EC),
+        title: const Text('Admin Home', 
         style: TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.bold,
         ),
         ),
-        actions: [
+        actions: const [
           IconButton(onPressed: null, 
           icon: Icon(Icons.menu,
           color: Colors.black,))
         ],
       ),
-      body: Center(
-        child: Text(
-          'Welcome to the Admin Page!',
-          style: TextStyle(fontSize: 20),
+      backgroundColor:const  Color(0xFFE6F3EC),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            //Divider for better UI
+            Divider( 
+              color: Colors.black, 
+              thickness: 1, 
+            ),
+          adminprofilesection(), // profile section called 
+          ],
         ),
       ),
     );
