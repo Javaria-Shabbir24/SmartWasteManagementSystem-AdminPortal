@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'admin_profile_section.dart';//importing the profile section
+import 'admin_bottom_section.dart';
+import 'admin_profile_section.dart';
 import 'admin_grid_section.dart';
 
 class Admin extends StatelessWidget {
@@ -31,9 +32,11 @@ class Admin extends StatelessWidget {
             ),
           adminprofilesection(), // profile section called 
           AdminGridSection(),
+          
           ],
         ),
       ),
+      bottomNavigationBar: AdminBottomSection(),
     );
   }
 }
