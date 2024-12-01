@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'admin_profile_section.dart';//importing the profile section
+import 'admin_grid_section.dart';
 
 class Admin extends StatelessWidget {
   @override
@@ -29,6 +30,7 @@ class Admin extends StatelessWidget {
               thickness: 1, 
             ),
           adminprofilesection(), // profile section called 
+          AdminGridSection(),
           ],
         ),
       ),
