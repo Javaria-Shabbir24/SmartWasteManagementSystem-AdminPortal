@@ -51,6 +51,64 @@ class AdminManageStaff extends StatelessWidget {
                 ],
               ),
             ),
+            //spacing
+            const SizedBox(height: 12),
+            Container(
+              padding: EdgeInsets.all(16),
+              margin: EdgeInsets.all(18),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: const Color(0xFF2E7835),
+                  width: 3,
+                ),
+                color: Colors.white,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset('assets/employees.jpg',
+                  height: 80,
+                  width:80,
+                  ),
+                  const SizedBox(width: 12,),
+                  const Expanded(
+                    child:Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('View Employees', 
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                          ),
+                          SizedBox(width: 10),
+                          Icon(Icons.arrow_forward),
+
+                        ],
+                      ),
+                      Divider(
+                        color: Colors.black,
+                        thickness: 1,
+                      
+                      ),
+                      SizedBox(height: 5,),
+                      Text('Access employees’ information \nand make termination decisions',
+                      style: TextStyle(
+                        fontSize: 12,
+                      ),),
+
+
+                    ],
+                  ),
+                  ),
+                ],
+              ),
+             
+              
+            ),
           ],
         ),
       
