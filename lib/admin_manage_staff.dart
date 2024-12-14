@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'admin_bottom_section.dart';
 import 'admin_view_employees.dart';
+import 'admin_hire_employee.dart';
 
 class AdminManageStaff extends StatelessWidget {
   @override
@@ -55,7 +56,10 @@ class AdminManageStaff extends StatelessWidget {
             //spacing
             const SizedBox(height: 12),
             //View Employees Card
-            createCard(context,'assets/employees.jpg','View Employees', 'Access employees’ information \nand make termination decisions')
+            createCard(context,'assets/employees.jpg','View Employees', 'Access employees’ information \nand make termination decisions', const AdminViewEmployees()),
+            //Hire an Employee
+            createCard(context,'assets/hireemployee.png','Hire an Employee', 'Onboard a new team member ',const AdminHireEmployee()),
+            
           ],
         ),
       
@@ -98,7 +102,7 @@ Widget statCard(int count, String label){
 
 //function to create separate containers for each functionality
 
-Widget createCard(BuildContext context, imagepath,String titlee, String description){
+Widget createCard(BuildContext context, imagepath,String titlee, String description, Widget nextpage){
   return Container(
     padding: const EdgeInsets.all(16),
     margin: const EdgeInsets.all(18),
@@ -134,7 +138,7 @@ Widget createCard(BuildContext context, imagepath,String titlee, String descript
                 GestureDetector(
                   onTap: (){
                     Navigator.push(
-                      context, MaterialPageRoute(builder: (context)=>const AdminViewEmployees()
+                      context, MaterialPageRoute(builder: (context)=> nextpage,
                       ),
                       );
                   },
