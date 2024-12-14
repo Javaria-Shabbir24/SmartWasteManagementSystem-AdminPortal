@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'admin_bottom_section.dart';
 
-class AdminViewVehicles extends StatelessWidget {
-  const AdminViewVehicles({super.key});
+class AdminLeaveResponse extends StatelessWidget {
+  const AdminLeaveResponse({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar( 
         backgroundColor:const  Color(0xFFE6F3EC),
-        title: const Text("Vehicles",
+        title: const Text("Leave Response",
         style: TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.bold,
