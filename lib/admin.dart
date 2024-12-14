@@ -26,7 +26,7 @@ class Admin extends StatelessWidget {
         child: Column(
           children: [
             //Divider for better UI
-            Divider( 
+            const Divider( 
               color: Colors.black, 
               thickness: 1, 
             ),

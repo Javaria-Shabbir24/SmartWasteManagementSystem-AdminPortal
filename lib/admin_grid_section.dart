@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import 'admin_manage_staff.dart';
+import 'admin_manage_vehicle.dart';
+import 'admin_review_feedback.dart';
+import 'admin_view_bin_info.dart';
+import 'admin_view_residents.dart';
+import 'admin_manage_leave_requests.dart';
 
 class AdminGridSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> options = [
-      {"image": 'assets/staff.png', "label": "Manage Staff"},
-      {"image": 'assets/truckicon.jpg', "label": "Manage Vehicle"},
-      {"image": 'assets/feedback1.png', "label": "Review Feedback"},
-      {"image": 'assets/bin1.png', "label": "View Bin Info"},
-      {"image": 'assets/resident.png', "label": "View Residents"},
-      {"image": 'assets/leave.png', "label": "Manage Leave \nRequest"},
+      {"image": 'assets/staff.png', "label": "Manage Staff", "page": AdminManageStaff()},
+      {"image": 'assets/truckicon.jpg', "label": "Manage Vehicle", "page": AdminManageVehicle()},
+      {"image": 'assets/feedback1.png', "label": "Review Feedback", "page": AdminReviewFeedback()},
+      {"image": 'assets/bin1.png', "label": "View Bin Info", "page": AdminViewBinInfo()},
+      {"image": 'assets/resident.png', "label": "View Residents", "page": AdminViewResidents()},
+      {"image": 'assets/leave.png', "label": "Manage Leave \nRequest", "page": AdminManageLeaveRequests()},
     ];
     
     return Padding(
-      padding: const EdgeInsets.all(27),
+      padding: const EdgeInsets.only(left: 27, right:27),
       child: GridView.builder(
         physics: const NeverScrollableScrollPhysics(), // Prevent inner scrolling
         shrinkWrap: true, 
@@ -27,8 +33,10 @@ class AdminGridSection extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("${options[index]['label']} clicked!")),
+              // Navigate to the selected page on button click
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => options[index]['page']),
               );
             },
             child: Container(
