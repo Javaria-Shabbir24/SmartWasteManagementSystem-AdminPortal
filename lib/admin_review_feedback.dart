@@ -9,12 +9,12 @@ class AdminReviewFeedback extends StatefulWidget {
 }
 
 class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
+  //variable to store the selected feedback type
+  String? selectedFeedbackType;
   @override
   Widget build(BuildContext context) {
     //list of feedback types
     List<String> feedbackTypes=['Complaints','Suggestions','Questions'];
-    //variable to store the selected feedback type
-    String? selectedFeedbackType;
     return Scaffold(
       appBar: AppBar( 
         backgroundColor:const  Color(0xFFE6F3EC),
@@ -48,7 +48,7 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
               padding: EdgeInsets.all(7),
               margin: EdgeInsets.only(top: 10),
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFF2E7835),width: 3),
+                border: Border.all(color: Color(0xFF2E7835),width: 5),
               ),
               child: Text('Employee feedback on waste management\nis available for your review.',
               style: TextStyle(
@@ -61,7 +61,6 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
             const SizedBox(height: 15,),
             Container(
               padding: EdgeInsets.only(left: 14,right: 14,top: 5,bottom: 5),
-              
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -78,12 +77,7 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
                           ),
                         ),
                         SizedBox(width: 10,),
-                        Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              border: Border.all(color: Color(0xFF2E7835)),
-                            ),
-                            child: DropdownButton<String>(
+                        DropdownButton<String>(
                             hint: Text(selectedFeedbackType ?? 'Select'),
                             value: selectedFeedbackType,
                             items: feedbackTypes.map((String type){
@@ -95,14 +89,33 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
                             onChanged:(String? newvalue){
                               setState(() {
                                 selectedFeedbackType=newvalue;
-                              });
-                              
+                              }
+                              );
                             },
-                            
-                          ),
+                            dropdownColor: Colors.white,
                         ),
                       ],
                   ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    margin: EdgeInsets.all(10),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          feedbackCard(1,'Momina Raees','Compliant','The bin is overflowing'),
+                          const SizedBox(height: 20,),
+                          feedbackCard(2,'Ali Nadeem', 'Questions', 'Can I change my bin schedule time?'),
+                          const SizedBox(height: 20,),
+                          feedbackCard(2,'Ayesha Omar', 'Suggestions', 'Residents shall be able to see Data Analytics.'),
+                          const SizedBox(height: 20,),
+                          feedbackCard(2,'Razia Saleem', 'Questions', 'How to register a waste bin?'),
+                        ],
+                      ),
+                      
+                    ),
+                  )
+                  
                 ],
               )
             )
@@ -113,4 +126,69 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
       bottomNavigationBar: AdminBottomSection(),
     );
   }
+}
+
+Widget feedbackCard(int ID, String name, String feedbackType, String description){
+  return Container(
+    padding: EdgeInsets.all(10),
+    decoration: BoxDecoration(
+      border: Border.all(color: Colors.black,width: 3),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('Resident ID: ',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(ID.toString()),
+            SizedBox(width: 150,),
+            //icon to edit the feedbacks
+            Icon(Icons.edit),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('Name: ',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(name),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('Feedback Type: ',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(feedbackType,
+            style:TextStyle(
+              color: Colors.red,
+            ),),
+          ],
+        ),
+        Wrap(
+          children: [
+            Text(
+              description,
+              style: TextStyle(fontSize: 14),
+            ),
+          ],
+        ),
+      ],
+
+    ),
+
+
+  );
 }
