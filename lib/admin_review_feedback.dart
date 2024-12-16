@@ -229,23 +229,68 @@ void responseToFeedback(BuildContext context, Feedback feedback){
   context: context,
   builder: (BuildContext context){
     return AlertDialog(
-      title: Text('Feedback Response', style: 
+      title: Text('   Feedback Response', style: 
       TextStyle(
           fontSize: 22,
           fontWeight: FontWeight.bold
         ),
       ),
-      content: Column(
+      content: 
+      Container(
+        height: 320,
+        child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Divider(
+            color: Colors.black,
+            thickness: 3,
+
+          ),
+          SizedBox(height: 10,),
           Text('Reply to ${feedback.residentName}',
-          style: TextStyle(
-            fontSize: 18,
+          style: const TextStyle(
+            fontSize: 16,
           ),
           ),
+          const SizedBox(height: 20,),
+          TextField(
+            maxLines: 5,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Type your response here...',
+            ),
+          ),
+          SizedBox(height: 20,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+                  SizedBox(width: 100,
+                  child:FloatingActionButton(onPressed: (){
+                    Navigator.pop(context);
+                    }, 
+                  backgroundColor: Colors.red,
+                  child: Text('Cancel', 
+                    style: TextStyle(color: Colors.white,)
+                    ),
+                ),
+              ),
+              SizedBox(width: 100,
+                  child:FloatingActionButton(onPressed: null, 
+                  backgroundColor: Color(0xFF2E7835),
+                  child: Text('Send', 
+                    style: TextStyle(color: Colors.white,)
+                    ),
+                ),
+              ),
+            ],
+          )
+
         ],
 
       ),
+
+      ),
+      
 
     );
   }
