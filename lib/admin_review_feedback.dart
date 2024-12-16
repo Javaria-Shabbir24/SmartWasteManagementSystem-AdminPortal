@@ -9,12 +9,20 @@ class AdminReviewFeedback extends StatefulWidget {
 }
 
 class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
+  //dummy data
+  List<Feedback> feedbackList = [
+    Feedback(1, 'Mashal Pervaiz', 'Complaint', 'The bin is overflowing'),
+    Feedback(2, 'Ali Nasir', 'Question', 'Can I change my bin schedule time?'),
+    Feedback(3, 'Ayesha Omar', 'Suggestion', 'Residents should be able to see Data Analytics.'),
+    Feedback(4, 'Razia Saleem', 'Question', 'How to register a waste bin?'),
+  ];
+ 
   //variable to store the selected feedback type
   String? selectedFeedbackType;
   @override
   Widget build(BuildContext context) {
     //list of feedback types
-    List<String> feedbackTypes=['Complaints','Suggestions','Questions'];
+    List<String> feedbackTypes=['Complaint','Suggestion','Question'];
     return Scaffold(
       appBar: AppBar( 
         backgroundColor:const  Color(0xFFE6F3EC),
@@ -102,15 +110,20 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          feedbackCard(1,'Momina Raees','Compliant','The bin is overflowing'),
-                          const SizedBox(height: 20,),
-                          feedbackCard(2,'Ali Nadeem', 'Questions', 'Can I change my bin schedule time?'),
-                          const SizedBox(height: 20,),
-                          feedbackCard(2,'Ayesha Omar', 'Suggestions', 'Residents shall be able to see Data Analytics.'),
-                          const SizedBox(height: 20,),
-                          feedbackCard(2,'Razia Saleem', 'Questions', 'How to register a waste bin?'),
-                        ],
+                        children: feedbackList.where(
+                          //filtering on the basis of dropdown selection
+                          (feedback)=> 
+                          feedback.feedbackType==selectedFeedbackType || //if the feedback is in the selected type
+                          selectedFeedbackType==null || //if no filter selected
+                          selectedFeedbackType=='Select'
+                          ).map((feedback) {
+                          return Column(
+                            children: [
+                              feedbackCard(context, feedback),
+                              const SizedBox(height: 20),
+                            ],
+                          );
+                        }).toList(),
                       ),
                     ),
                   )
@@ -126,7 +139,7 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
   }
 }
 //frontend code for feedback
-Widget feedbackCard(int ID, String name, String feedbackType, String description){
+Widget feedbackCard(BuildContext context, Feedback feedback){
   return Container(
     padding: const EdgeInsets.all(10),
     decoration: BoxDecoration(
@@ -144,10 +157,17 @@ Widget feedbackCard(int ID, String name, String feedbackType, String description
               fontWeight: FontWeight.bold,
               ),
             ),
-            Text(ID.toString()),
+            Text(feedback.residentID.toString()),
             const SizedBox(width: 150,),
             //icon to edit the feedbacks
-            const Icon(Icons.reply),
+            GestureDetector(
+              onTap: () {
+                responseToFeedback(context, feedback);
+              },
+              child: const Icon(Icons.reply,
+              color: Color(0xFF2E7835),),
+            )
+            
           ],
         ),
         Row(
@@ -158,7 +178,7 @@ Widget feedbackCard(int ID, String name, String feedbackType, String description
               fontWeight: FontWeight.bold,
               ),
             ),
-            Text(name),
+            Text(feedback.residentName),
           ],
         ),
         Row(
@@ -169,7 +189,7 @@ Widget feedbackCard(int ID, String name, String feedbackType, String description
               fontWeight: FontWeight.bold,
               ),
             ),
-            Text(feedbackType,
+            Text(feedback.feedbackType,
             style:const TextStyle(
               color: Colors.red,
             ),),
@@ -178,7 +198,7 @@ Widget feedbackCard(int ID, String name, String feedbackType, String description
         Wrap(
           children: [
             Text(
-              description,
+              feedback.descriptionn,
               style: const TextStyle(fontSize: 14),
             ),
           ],
@@ -189,12 +209,47 @@ Widget feedbackCard(int ID, String name, String feedbackType, String description
 }
 //backend code
 //defining a class for feedbacks
-class feedback{
-  int? residentID;
-  String? name;
-  String? feedbacktype;
-  String? description;
+class Feedback{
+  int residentID=0;
+  String residentName='';
+  String feedbackType='';
+  String descriptionn='';
+  //constructor
+  Feedback(int iD,String name, String feedbacktype, String description)
+  {
+    residentID=iD;
+    residentName=name;
+    feedbackType=feedbacktype;
+    descriptionn=description;
+  }
+}
+//method to reply to resident
+void responseToFeedback(BuildContext context, Feedback feedback){
+  showDialog(
+  context: context,
+  builder: (BuildContext context){
+    return AlertDialog(
+      title: Text('Feedback Response', style: 
+      TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.bold
+        ),
+      ),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Reply to ${feedback.residentName}',
+          style: TextStyle(
+            fontSize: 18,
+          ),
+          ),
+        ],
 
+      ),
+
+    );
+  }
+  );
 
 
 }
