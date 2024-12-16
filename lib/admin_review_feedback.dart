@@ -54,17 +54,16 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
             ),
             Container(
               padding: const EdgeInsets.all(7),
-              margin: const EdgeInsets.only(top: 10),
               decoration: BoxDecoration(
-                border: Border.all(color: const Color(0xFF2E7835),width: 5),
+                border: Border.all(color: const Color(0xFF2E7835),width: 9),
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
               ),
               child: const Text('Employee feedback on waste management\nis available for your review.',
               style: TextStyle(
               fontSize: 16,
             ),
-
             )
-            
             ),
             const SizedBox(height: 15,),
             Container(
@@ -76,6 +75,7 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
                   Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        const SizedBox(width: 12,),
                         const Text(
                           'Select Feedback Type:',
                           style: TextStyle(
@@ -145,6 +145,7 @@ Widget feedbackCard(BuildContext context, Feedback feedback){
     decoration: BoxDecoration(
       border: Border.all(color: Colors.black,width: 3),
       borderRadius: BorderRadius.circular(10),
+      color: Colors.white,
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -229,7 +230,7 @@ void responseToFeedback(BuildContext context, Feedback feedback){
   context: context,
   builder: (BuildContext context){
     return AlertDialog(
-      title: Text('   Feedback Response', style: 
+      title: const Text('   Feedback Response', style: 
       TextStyle(
           fontSize: 22,
           fontWeight: FontWeight.bold
@@ -241,26 +242,26 @@ void responseToFeedback(BuildContext context, Feedback feedback){
         child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Divider(
+          const Divider(
             color: Colors.black,
             thickness: 3,
 
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           Text('Reply to ${feedback.residentName}',
           style: const TextStyle(
             fontSize: 16,
           ),
           ),
           const SizedBox(height: 20,),
-          TextField(
+          const TextField(
             maxLines: 5,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: 'Type your response here...',
             ),
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -269,12 +270,12 @@ void responseToFeedback(BuildContext context, Feedback feedback){
                     Navigator.pop(context);
                     }, 
                   backgroundColor: Colors.red,
-                  child: Text('Cancel', 
+                  child: const Text('Cancel', 
                     style: TextStyle(color: Colors.white,)
                     ),
                 ),
               ),
-              SizedBox(width: 100,
+              const SizedBox(width: 100,
                   child:FloatingActionButton(onPressed: null, 
                   backgroundColor: Color(0xFF2E7835),
                   child: Text('Send', 
@@ -283,18 +284,11 @@ void responseToFeedback(BuildContext context, Feedback feedback){
                 ),
               ),
             ],
-          )
-
+          ),
         ],
-
       ),
-
       ),
-      
-
     );
   }
   );
-
-
 }
