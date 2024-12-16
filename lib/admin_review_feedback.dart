@@ -40,17 +40,17 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             
-            Divider(
+            const Divider(
               color: Colors.black,
               thickness: 1,
             ),
             Container(
-              padding: EdgeInsets.all(7),
-              margin: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.all(7),
+              margin: const EdgeInsets.only(top: 10),
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFF2E7835),width: 5),
+                border: Border.all(color: const Color(0xFF2E7835),width: 5),
               ),
-              child: Text('Employee feedback on waste management\nis available for your review.',
+              child: const Text('Employee feedback on waste management\nis available for your review.',
               style: TextStyle(
               fontSize: 16,
             ),
@@ -60,7 +60,7 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
             ),
             const SizedBox(height: 15,),
             Container(
-              padding: EdgeInsets.only(left: 14,right: 14,top: 5,bottom: 5),
+              padding: const EdgeInsets.only(left: 14,right: 14,top: 5,bottom: 5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -68,15 +68,15 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
                   Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Select Feedback Type:',
                           style: TextStyle(
-                            color: const Color(0xFF2E7835),
+                            color: Color(0xFF2E7835),
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(width: 10,),
+                        const SizedBox(width: 10,),
                         DropdownButton<String>(
                             hint: Text(selectedFeedbackType ?? 'Select'),
                             value: selectedFeedbackType,
@@ -97,8 +97,8 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
                       ],
                   ),
                   Container(
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.all(10),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -112,10 +112,8 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
                           feedbackCard(2,'Razia Saleem', 'Questions', 'How to register a waste bin?'),
                         ],
                       ),
-                      
                     ),
                   )
-                  
                 ],
               )
             )
@@ -127,10 +125,10 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
     );
   }
 }
-
+//frontend code for feedback
 Widget feedbackCard(int ID, String name, String feedbackType, String description){
   return Container(
-    padding: EdgeInsets.all(10),
+    padding: const EdgeInsets.all(10),
     decoration: BoxDecoration(
       border: Border.all(color: Colors.black,width: 3),
       borderRadius: BorderRadius.circular(10),
@@ -141,21 +139,21 @@ Widget feedbackCard(int ID, String name, String feedbackType, String description
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Resident ID: ',
+            const Text('Resident ID: ',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               ),
             ),
             Text(ID.toString()),
-            SizedBox(width: 150,),
+            const SizedBox(width: 150,),
             //icon to edit the feedbacks
-            Icon(Icons.edit),
+            const Icon(Icons.reply),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Name: ',
+            const Text('Name: ',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               ),
@@ -166,13 +164,13 @@ Widget feedbackCard(int ID, String name, String feedbackType, String description
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Feedback Type: ',
+            const Text('Feedback Type: ',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               ),
             ),
             Text(feedbackType,
-            style:TextStyle(
+            style:const TextStyle(
               color: Colors.red,
             ),),
           ],
@@ -181,14 +179,22 @@ Widget feedbackCard(int ID, String name, String feedbackType, String description
           children: [
             Text(
               description,
-              style: TextStyle(fontSize: 14),
+              style: const TextStyle(fontSize: 14),
             ),
           ],
         ),
       ],
-
     ),
-
-
   );
+}
+//backend code
+//defining a class for feedbacks
+class feedback{
+  int? residentID;
+  String? name;
+  String? feedbacktype;
+  String? description;
+
+
+
 }
