@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'admin_bottom_section.dart';
 
@@ -159,12 +157,12 @@ Widget areaCard(BuildContext context, Area area){
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image(image: AssetImage('assets/bin.jpg'),
+            const Image(image: AssetImage('assets/bin.jpg'),
             height: 50,
             width: 40,),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Text('Bin Id ${area.binID.toString()}',
-            style: TextStyle(fontWeight: FontWeight.bold),),
+            style: const TextStyle(fontWeight: FontWeight.bold),),
           ],
 
         ),

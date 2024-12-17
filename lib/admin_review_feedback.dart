@@ -9,7 +9,9 @@ class AdminReviewFeedback extends StatefulWidget {
 }
 
 class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
-  //dummy data
+  // dummy data
+  // add the status thing
+  // sepaarte on the basis of replied and unreplied feedbacks
   List<Feedback> feedbackList = [
     Feedback(1, 'Mashal Pervaiz', 'Complaint', 'The bin is overflowing'),
     Feedback(2, 'Ali Nasir', 'Question', 'Can I change my bin schedule time?'),
