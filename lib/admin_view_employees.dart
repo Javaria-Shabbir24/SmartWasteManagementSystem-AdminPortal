@@ -15,7 +15,6 @@ class AdminViewEmployeesState extends State<AdminViewEmployees> {
     Employee(2, 'Javad Ali', 'javedali@gmail.com', 'Yes',03345566666),
     Employee(3, 'Afzal Amir', 'afzal1@gmail.com', 'No',033324456112),
     Employee(4, 'Omar Anas', 'omar@gmail.com', 'No',03004474553),
-    Employee(5, 'Faiz Amir', 'faiz@gmail.com', 'No',03312234765),
   ];
  
   //variable to store the selected employee 
@@ -143,7 +142,6 @@ class AdminViewEmployeesState extends State<AdminViewEmployees> {
 //frontend code for employee
 Widget employeeCard(BuildContext context, Employee employee){
   return Container(
-    
     padding: const EdgeInsets.all(10),
     decoration: BoxDecoration(
       border: Border.all(color: Colors.black,width: 3),
@@ -156,7 +154,6 @@ Widget employeeCard(BuildContext context, Employee employee){
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const SizedBox(height: 5,),
             const Image(image: AssetImage('assets/employee.jpg'),
             height: 50,
             width: 40,),
@@ -170,13 +167,6 @@ Widget employeeCard(BuildContext context, Employee employee){
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                 SizedBox(width: 160,),
-                 Icon(Icons.delete),
-              ]
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -188,7 +178,15 @@ Widget employeeCard(BuildContext context, Employee employee){
                 ),
                 Text(employee.employeeName,
                 ),
-                
+                const SizedBox(width: 45,),
+                GestureDetector(
+                  onTap: () {
+                    deleteEmployee(context,employee); 
+                  },
+                  child: Icon(
+                     Icons.delete,
+                  ),
+                ),
               ],
             ),
             Row(
@@ -229,7 +227,6 @@ Widget employeeCard(BuildContext context, Employee employee){
                 ),
               ],
             ),
-            SizedBox(height: 20,),
           ],
         ),
         
@@ -256,4 +253,52 @@ class Employee{
     employeeLeaveStatus=leaveStatus;
     employeeContactNumber=contactNumber;
   }
+}
+
+//method to delete details of an employee
+void deleteEmployee(BuildContext context, Employee employee){
+  showDialog(
+  context: context,
+  builder: (BuildContext context){
+    return AlertDialog(
+      content: 
+      Container(
+        height: 180,
+        child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 20,),
+          const Text('Are you sure you want to remove this employee?',
+          style: TextStyle(fontSize: 20,
+          ),),
+          const SizedBox(height: 20,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+                  SizedBox(width: 100,
+                  child:FloatingActionButton(onPressed: (){
+                    Navigator.pop(context);
+                    }, 
+                  backgroundColor: Colors.white,
+                  child: const Text('Cancel', 
+                    style: TextStyle(color: Colors.black,)
+                    ),
+                ),
+              ),
+              const SizedBox(width: 100,
+                  child:FloatingActionButton(onPressed: null, 
+                  backgroundColor: Color.fromARGB(255, 133, 23, 15),
+                  child: Text('Delete', 
+                    style: TextStyle(color: Colors.white,)
+                    ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      ),
+    );
+  }
+  );
 }

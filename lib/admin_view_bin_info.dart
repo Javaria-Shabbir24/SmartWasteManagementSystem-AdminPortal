@@ -28,7 +28,7 @@ class AdminViewBinInfoState extends State<AdminViewBinInfo> {
     return Scaffold(
       appBar: AppBar( 
         backgroundColor:const  Color(0xFFE6F3EC),
-        title: const Text("View Bin Information",
+        title: const Text("Bin Information",
         style: TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.bold,

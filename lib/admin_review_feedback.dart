@@ -271,9 +271,9 @@ void responseToFeedback(BuildContext context, Feedback feedback){
                   child:FloatingActionButton(onPressed: (){
                     Navigator.pop(context);
                     }, 
-                  backgroundColor: Colors.red,
+                  backgroundColor: Colors.white,
                   child: const Text('Cancel', 
-                    style: TextStyle(color: Colors.white,)
+                    style: TextStyle(color: Colors.black,)
                     ),
                 ),
               ),
