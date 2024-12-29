@@ -9,6 +9,11 @@ class AdminManageLeaveRequests extends StatefulWidget {
 }
 
 class AdminManageLeaveRequestsState extends State<AdminManageLeaveRequests> {
+  //dummy data
+  List<EmployeeLeaveRequests> requests=[
+    EmployeeLeaveRequests(1,'Mashal Pervaiz','Sick Leave Request','With due respect, I request you to grant me a leave for three days due to illness.'),
+    EmployeeLeaveRequests(22,'Faisal Shehzad','Urgent Work Leave Request','I shall be unavailable due to an urgent piece of work at home. Kindly grant me leave for a day. Regards.'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +72,10 @@ class AdminManageLeaveRequestsState extends State<AdminManageLeaveRequests> {
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                         
+                        children: [
+                          for(var request in requests)
+                          leaveRequestCard(context, request),
+                        ],
                       ),
                     ),
                   )
@@ -82,18 +90,34 @@ class AdminManageLeaveRequestsState extends State<AdminManageLeaveRequests> {
     );
   }
 }
+//function to create leave requests cards
+Widget leaveRequestCard(BuildContext context, EmployeeLeaveRequests request){
+  return Container(
+    padding: EdgeInsets.all(10),
+    decoration: BoxDecoration(
+      border: Border.all(color: Colors.black,width: 3),
+      borderRadius: BorderRadius.circular(10),
+      color: Colors.white,
+    ),
+  );
+}
 
 //backend code
 //defining a class for Employee details
-class Employee{
+class EmployeeLeaveRequests{
   int employeeID=0;
-  int employeeName=0;
+  String employeeName='';
   String requestType='';
-  String summary='';
+  String leaveRequestSummary='';
+  DateTime dateOfRequest= DateTime.now(); //to track the date of leave requested
   String requestStatus='';// to maintain track of replied and unreplied leave requests
   String response='';//the response entered by admin
   //constructor
-  Employee(int iD,int capacity, int fillLevel, String assignedTo, String location, int time)
+  EmployeeLeaveRequests(int iD,String name, String type, String summary)
   {
+    employeeID=iD;
+    employeeName=name;
+    requestType=type;
+    leaveRequestSummary=summary;
   }
 }
