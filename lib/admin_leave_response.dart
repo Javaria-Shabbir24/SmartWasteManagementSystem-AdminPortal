@@ -24,6 +24,30 @@ class AdminLeaveResponse extends StatelessWidget {
             )
         ],
       ),
+      
+      backgroundColor: const Color(0xFFE6F3EC),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Divider(
+              color: Colors.black,
+              thickness: 1,
+            ),
+            Container(
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.all(10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image(image: AssetImage('assets/reply.jpg'))
+                ],
+
+              ),
+            ),
+          ],
+        ),
+      ),
       bottomNavigationBar: AdminBottomSection(),
     );
   }

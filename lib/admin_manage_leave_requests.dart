@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'admin_bottom_section.dart';
+import 'admin_leave_response.dart';
 
 class AdminManageLeaveRequests extends StatefulWidget {
   const AdminManageLeaveRequests({super.key});
@@ -14,6 +15,13 @@ class AdminManageLeaveRequestsState extends State<AdminManageLeaveRequests> {
     EmployeeLeaveRequests(1,'Mashal Pervaiz','Sick Leave Request','With due respect, I request you to grant me a leave for three days due to illness.'),
     EmployeeLeaveRequests(22,'Faisal Shehzad','Urgent Work Leave Request','I shall be unavailable due to an urgent piece of work at home. Kindly grant me leave for a day. Regards.'),
   ];
+  Map<int, String> selectedOptions = {};
+
+  void updateSelectedOption(int requestId, String value) {
+    setState(() {
+      selectedOptions[requestId] = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,14 +75,22 @@ class AdminManageLeaveRequestsState extends State<AdminManageLeaveRequests> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(5),
                     margin: const EdgeInsets.all(10),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           for(var request in requests)
-                          leaveRequestCard(context, request),
+                          Column(
+                            children: [
+                              leaveRequestCard(context, request,selectedOptions[request.employeeID] ?? 'Grant Request',
+                                  (value) {
+                                    updateSelectedOption(request.employeeID, value);
+                                  },),
+                              SizedBox(height: 20,),
+                            ],
+                          )
                         ],
                       ),
                     ),
@@ -91,7 +107,8 @@ class AdminManageLeaveRequestsState extends State<AdminManageLeaveRequests> {
   }
 }
 //function to create leave requests cards
-Widget leaveRequestCard(BuildContext context, EmployeeLeaveRequests request){
+Widget leaveRequestCard(BuildContext context, EmployeeLeaveRequests request, String selectedOption, Function(String) updateSelectedOption){
+  
   return Container(
     padding: EdgeInsets.all(10),
     decoration: BoxDecoration(
@@ -99,6 +116,118 @@ Widget leaveRequestCard(BuildContext context, EmployeeLeaveRequests request){
       borderRadius: BorderRadius.circular(10),
       color: Colors.white,
     ),
+    child: Column(
+      children: [
+        Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const Image(image: AssetImage('assets/leave.png'),
+                  height: 50,
+                  width: 60,),
+                  const SizedBox(height: 10,),
+                  
+                ],
+
+              ),
+              SizedBox(width: 30,),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text('Employee Id ${request.employeeID.toString()}',
+                      style: const TextStyle(fontWeight: FontWeight.bold),),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        request.employeeName
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(request.requestType),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Text('Summary: ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 5,),
+            Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                border: Border.all(color: const Color(0xFF2E7835),width: 2),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Text ('${request.leaveRequestSummary}',
+            ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Radio<String>(
+                      value: 'Grant Leave',
+                      groupValue: selectedOption,
+                      onChanged: (value) {
+                        updateSelectedOption(value!);
+                      },
+                    ),
+                    const Text('Grant Leave'),
+                  ],
+                ),
+                SizedBox(width: 10,),
+                Row(
+                  children: [
+                    Radio<String>(
+                      value: 'Deny Request',
+                      groupValue: selectedOption,
+                      onChanged: (value) {
+                        updateSelectedOption(value!);
+                      },
+                    ),
+                    const Text('Deny Request'),
+                  ],
+                ),
+              ],
+
+            ),
+             SizedBox(
+              width: 130,
+              height: 40,
+              child: FloatingActionButton(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> AdminLeaveResponse() ),);
+
+              },
+              child: Text('Write a Response',
+              style: TextStyle(color: Colors.white),
+              ),
+              backgroundColor: 
+              Color(0xFF2E7835),
+              ),
+            )
+      ],
+    ),
+    
   );
 }
 
