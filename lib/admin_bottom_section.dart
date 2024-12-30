@@ -1,63 +1,80 @@
 import 'package:flutter/material.dart';
+import 'admin_about.dart';
+import 'admin_notifications.dart';
+import 'admin.dart';
+import 'admin_profile.dart';
 
-class AdminBottomSection extends StatelessWidget {
+class AdminBottomSection extends StatefulWidget {
+  @override
+  State<AdminBottomSection> createState() => _AdminBottomSectionState();
+}
+
+class _AdminBottomSectionState extends State<AdminBottomSection> {
+  int selectedIndex=0;
+
+  void tappedFunction(int index){
+    setState(() {
+      selectedIndex=index;
+    });
+    switch(index){
+      case 0:
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context)=>Admin()
+        ) 
+      );
+      case 1:
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context)=>AdminNotifications()
+        ) 
+      );
+      case 2:
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context)=>AdminAbout()
+        ) 
+      );
+      case 3:
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context)=>AdminProfile()
+        ) 
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const BottomAppBar(
-        color:  Color(0xFF2E7835),
-        child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          //home icon
-            Column(
-              children: [
-                IconButton(
-                  onPressed: null,
-                  icon: Icon(Icons.home, color: Colors.white, size: 30,),
-                ),
-                Text('Home', style: TextStyle(color: Colors.white, fontSize: 5,fontWeight: FontWeight.bold),
-                ),
-              ],
+    return BottomNavigationBar(
+      currentIndex: selectedIndex,
+      onTap: tappedFunction,
+      type: BottomNavigationBarType.fixed,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home, color: Colors.white),
+              label: "Home",
             ),
-          //Notifications icon
-            Column(
-              children: [
-                IconButton(
-                  onPressed: null,
-                  icon: Icon(Icons.notifications, color: Colors.white,size: 30,),
-                ),
-                Text('Notifications', style: TextStyle(color: Colors.white, fontSize: 5,fontWeight: FontWeight.bold),
-                ),
-              ],
+            BottomNavigationBarItem(
+              icon: Icon(Icons.notifications, color: Colors.white),
+              label: "Notifications",
             ),
-          //About icon
-            Column(
-              children: [
-                IconButton(
-                  onPressed: null,
-                  icon: Icon(Icons.description_outlined, color: Colors.white,size: 30,),
-                ),
-                Text('About', style: TextStyle(color: Colors.white, fontSize: 5,fontWeight: FontWeight.bold),
-                ),
-              ],
+            BottomNavigationBarItem(
+              icon: Icon(Icons.info, color: Colors.white),
+              label: "About",
             ),
-          //Profile icon
-            Column(
-              children: [
-                IconButton(
-                  onPressed: null,
-                  icon: Icon(Icons.person, color: Colors.white,size: 30,),
-                ),
-                Text('Profile', style: TextStyle(color: Colors.white, fontSize: 5,fontWeight: FontWeight.bold),
-                ),
-              ],
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person, color: Colors.white),
+              label: "Profile",
             ),
-
-
-        ],
-        ),
-      ),
-    );
+          ],
+          backgroundColor: const  Color(0xFF2E7835),
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white,
+        );
   }
 }
