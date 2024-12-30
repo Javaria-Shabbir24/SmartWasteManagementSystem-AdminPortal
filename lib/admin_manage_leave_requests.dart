@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'admin_bottom_section.dart';
 import 'admin_leave_response.dart';
 
+
 class AdminManageLeaveRequests extends StatefulWidget {
   const AdminManageLeaveRequests({super.key});
 
@@ -215,7 +216,7 @@ Widget leaveRequestCard(BuildContext context, EmployeeLeaveRequests request, Str
               width: 130,
               height: 40,
               child: FloatingActionButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> AdminLeaveResponse() ),);
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> AdminLeaveResponse(employeeID: request.employeeID,employeeName: request.employeeName, dateOfRequest: request.dateOfRequest )));
 
               },
               child: Text('Write a Response',
