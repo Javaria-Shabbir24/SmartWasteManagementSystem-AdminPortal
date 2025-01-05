@@ -5,6 +5,10 @@ class AdminAbout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      child: AppBar(
+        title: Text('About'),
+      ),
+    );
   }
 }

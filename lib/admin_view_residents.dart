@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'admin_bottom_section.dart';
+import 'admin_menu.dart';
 
 class AdminViewResidents extends StatefulWidget {
   const AdminViewResidents({super.key});
@@ -32,15 +33,8 @@ class AdminViewResidentsState extends State<AdminViewResidents> {
           fontWeight: FontWeight.bold,
          ),
         ),
-        actions: const [
-          IconButton(
-            onPressed: null, 
-            icon: Icon(Icons.menu,
-            color: Colors.black,
-            )
-            )
-        ],
       ),
+      endDrawer:AdminMenu(),
       backgroundColor: const Color(0xFFE6F3EC),
       body: SingleChildScrollView(
         child: Column(

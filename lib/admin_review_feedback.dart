@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'admin_bottom_section.dart';
+import 'admin_menu.dart';
 
 class AdminReviewFeedback extends StatefulWidget {
   const AdminReviewFeedback({super.key});
@@ -34,15 +35,8 @@ class _AdminReviewFeedbackState extends State<AdminReviewFeedback> {
           fontWeight: FontWeight.bold,
          ),
         ),
-        actions: const [
-          IconButton(
-            onPressed: null, 
-            icon: Icon(Icons.menu,
-            color: Colors.black,
-            )
-            )
-        ],
       ),
+      endDrawer:AdminMenu(),
       backgroundColor: const Color(0xFFE6F3EC),
       body: SingleChildScrollView(
         child: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'admin_bottom_section.dart';
+import 'admin_menu.dart';
 
 class AdminProfile extends StatelessWidget {
   const AdminProfile({super.key});
@@ -15,15 +16,8 @@ class AdminProfile extends StatelessWidget {
           fontWeight: FontWeight.bold,
          ),
         ),
-        actions: const [
-          IconButton(
-            onPressed: null, 
-            icon: Icon(Icons.menu,
-            color: Colors.black,
-            )
-            )
-        ],
       ),
+      endDrawer:AdminMenu(),
       backgroundColor: const Color(0xFFE6F3EC),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(left: 5, right: 5),

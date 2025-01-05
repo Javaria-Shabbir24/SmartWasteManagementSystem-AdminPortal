@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'admin_bottom_section.dart';
 import 'admin_view_employees.dart';
 import 'admin_hire_employee.dart';
+import 'admin_menu.dart';
 
 class AdminManageStaff extends StatelessWidget {
   @override
@@ -15,15 +16,8 @@ class AdminManageStaff extends StatelessWidget {
           fontWeight: FontWeight.bold,
          ),
         ),
-        actions: const [
-          IconButton(
-            onPressed: null, 
-            icon: Icon(Icons.menu,
-            color: Colors.black,
-            )
-            )
-        ],
       ),
+      endDrawer:AdminMenu(),
       //setting the background color
       backgroundColor:const  Color(0xFFE6F3EC),
       //setting up the body section

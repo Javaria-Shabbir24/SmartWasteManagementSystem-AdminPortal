@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'admin_bottom_section.dart';
+import 'admin_menu.dart';
 
 class AdminViewEmployees extends StatefulWidget {
   const AdminViewEmployees({super.key});
@@ -32,15 +33,8 @@ class AdminViewEmployeesState extends State<AdminViewEmployees> {
           fontWeight: FontWeight.bold,
          ),
         ),
-        actions: const [
-          IconButton(
-            onPressed: null, 
-            icon: Icon(Icons.menu,
-            color: Colors.black,
-            )
-            )
-        ],
       ),
+      endDrawer:AdminMenu(),
       backgroundColor: const Color(0xFFE6F3EC),
       body: SingleChildScrollView(
         child: Column(
