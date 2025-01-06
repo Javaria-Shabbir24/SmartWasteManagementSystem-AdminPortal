@@ -54,6 +54,7 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
+   - assets/earth2r.png
    - assets/graph.png
    - assets/staff.png
    - assets/truckicon.jpg
